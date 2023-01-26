@@ -1,7 +1,9 @@
 import nodeNotifier from 'node-notifier';
+let multiplier = 10
 let counter = 1
 let focusTime = false
-
+let index = 1
+let progressBar = ['[','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-','-',']']
 
 setInterval(() => {
   if(counter === 300000 && focusTime === false) {
@@ -26,6 +28,13 @@ setInterval(() => {
   }
   !focusTime ? console.log("Focus time") : console.log("Breaking time")
   counter++
+  let joinedArray = progressBar.join("")
+  console.log(joinedArray)
+  if(counter===multiplier){
+    progressBar[index] =  "="
+    index++
+    multiplier=multiplier+10
+  }
 }, 1000)
 
 function notifier2 () {
