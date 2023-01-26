@@ -1,43 +1,44 @@
 import nodeNotifier from 'node-notifier';
-let num = 1
-let voltaDescanso = false
+let counter = 1
+let focusTime = false
 
 
 setInterval(() => {
-  if(num===5 && voltaDescanso === false) {
-    notificador()
-    num = 0
-    voltaDescanso = true
-    console.log({"voltaDescanso": voltaDescanso})
+  if(counter === 300000 && focusTime === false) {
+    notifier()
+    counter = 0
+    focusTime = true
+    console.log({"focusTime": focusTime})
   }
-  if(num === 10 && voltaDescanso === true) {
-    num = 0
-    voltaDescanso = false
-    notificador2()
+  if(counter === 1200000 && focusTime === true) {
+    counter = 0
+    focusTime = false
+    notifier2()
   }
   console.clear()
-  if(num>=60){
+  if(counter>=60){
     console.clear()
-    let min = Math.floor(num/60)
-    let sec = num - min*60 
-    console.log(`${min} min e ${sec} segundos`)
+    let min = Math.floor(counter/60)
+    let sec = counter - min*60 
+    console.log(`${min} min e ${sec} seconds`)
   } else {
-    console.log(`${num} segundos`)
+    console.log(`${counter} seconds`)
   }
-  num++
+  !focusTime ? console.log("Focus time") : console.log("Breaking time")
+  counter++
 }, 1000)
 
-function notificador2 () {
+function notifier2 () {
   nodeNotifier.notify({
     title: 'Pomodoro',
-    message: 'Hora do descanso',
+    message: 'Focus time',
     sound: true
   });
 }
-function notificador () {
+function notifier () {
   nodeNotifier.notify({
     title: 'Pomodoro',
-    message: 'Hora do descanso',
+    message: 'Breaking time',
     sound: true
   });
 }
