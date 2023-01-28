@@ -4,23 +4,17 @@ let counter = 1
 let focusTime = false
 let index = 1
 let progressBar = ['[', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', ']']
-let focusSeconds = 1200
-let breakSeconds = 300
+let focusSeconds = 1200 //seconds
 
 setInterval(() => {
-  if (counter === focusSeconds && focusTime === false) { //seconds
+  if (counter === focusSeconds && focusTime === false) {
     notifier()
     counter = 0
+    progressBar = ['[', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', ']']
     focusTime = true
-  }
-  if (counter === breakSeconds && focusTime === true) { //seconds
-    counter = 0
-    focusTime = false
-    notifier2()
   }
 
   console.clear()
-  
   if (counter >= 60) {
     console.clear()
     let min = Math.floor(counter / 60)
@@ -30,7 +24,6 @@ setInterval(() => {
     console.log(`${counter} seconds`)
   }
 
-  !focusTime ? console.log("Focus time") : console.log("Breaking time")
   counter++
 
   let joinedArray = progressBar.join("")
@@ -43,14 +36,7 @@ setInterval(() => {
   }
 }, 1000) //ms
 
-//notifiers
-function notifier2() {
-  nodeNotifier.notify({
-    title: 'Pomodoro',
-    message: 'Focus time',
-    sound: true
-  });
-}
+//notifiers when the time is over (it is preseted for 20 minutes)
 function notifier() {
   nodeNotifier.notify({
     title: 'Pomodoro',
